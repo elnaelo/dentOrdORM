@@ -58,7 +58,7 @@ public class ViewProstorija extends javax.swing.JFrame {
         obrada.getEntitet().setNaziv(txtNaziv.getText());
         obrada.getEntitet().setAdresa(txtAdresa.getText());
         obrada.getEntitet().setDuzina(Pomocno.getDecimalniBrojIzStringa(txtDuzina.getText()));
-        obrada.getEntitet().setDuzina(Pomocno.getDecimalniBrojIzStringa(txtDuzina.getText()));
+        obrada.getEntitet().setSirina(Pomocno.getDecimalniBrojIzStringa(txtSirina.getText()));
         obrada.getEntitet().setVisina(Pomocno.getDecimalniBrojIzStringa(txtVisina.getText()));
         
     }

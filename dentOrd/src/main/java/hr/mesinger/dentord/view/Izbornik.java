@@ -5,10 +5,21 @@
  */
 package hr.mesinger.dentord.view;
 
+import hr.mesinger.dentord.controller.ObradaPacijent;
+import hr.mesinger.dentord.controller.ObradaPosjet;
+import hr.mesinger.dentord.model.Pacijent;
+import hr.mesinger.dentord.model.Posjet;
+import hr.mesinger.dentord.model.Stomatolog;
 import hr.mesinger.dentord.util.HibernateUtil;
 import hr.mesinger.dentord.util.Pomocno;
+import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import javax.swing.ImageIcon;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -26,8 +37,27 @@ public class Izbornik extends javax.swing.JFrame {
         
         Vrijeme v = new Vrijeme();
         v.start();
+        nacrtajGraf();
         
     }
+    private void nacrtajGraf(){
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+        for(Posjet p: new ObradaPosjet().getPodaci()){
+            pieDataset.setValue(p.getStomatolog().getPrezime(), p.getPacijent().getId());
+        }
+        JFreeChart chart = ChartFactory.createPieChart
+                     ("Opterećenje stomatologa",   // Title
+                      pieDataset,           // Dataset
+                      true,                  // Show legend  
+                      true,                 //tooltip
+                      new Locale("hr","HR") //locale
+                     );
+        
+        BufferedImage image = chart.createBufferedImage(
+                (int)lblGraf.getSize().getWidth(),
+                (int)lblGraf.getSize().getHeight());
+        lblGraf.setIcon(new ImageIcon(image));
+         }
 
     
     private class Vrijeme extends Thread{
@@ -56,6 +86,7 @@ public class Izbornik extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         lblVrijeme = new javax.swing.JLabel();
+        lblGraf = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmAplikacija = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -145,11 +176,13 @@ public class Izbornik extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+            .addComponent(lblGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
+                .addComponent(lblGraf, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -209,6 +242,7 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu jmAplikacija;
+    private javax.swing.JLabel lblGraf;
     private javax.swing.JLabel lblVrijeme;
     // End of variables declaration//GEN-END:variables
 }

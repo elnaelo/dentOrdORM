@@ -51,7 +51,7 @@ public class ViewMedicinskaSestra extends javax.swing.JFrame {
         txtOib.setText(obrada.getEntitet().getOib());
         txtIban.setText(obrada.getEntitet().getIban());
         txtBrojTelefona.setText(obrada.getEntitet().getBrojTelefona());
-        postaviStomatolog();
+        postaviStomatologa();
         
         
     }
@@ -63,7 +63,7 @@ public class ViewMedicinskaSestra extends javax.swing.JFrame {
         obrada.getEntitet().setOib(txtOib.getText());
         obrada.getEntitet().setBrojTelefona(txtBrojTelefona.getText());
         obrada.getEntitet().setIban(txtIban.getText());
-        
+        obrada.getEntitet().setStomatolog(cmbStomatolog.getModel().getElementAt(cmbStomatolog.getSelectedIndex()));
         
     }
     
@@ -74,10 +74,11 @@ public class ViewMedicinskaSestra extends javax.swing.JFrame {
     }
     
     
-     private void postaviStomatolog() {
-        for (int i = 0; i < cmbStomatolog.getModel().getSize(); i++) {
-            if (cmbStomatolog.getModel().getElementAt(i).getId().equals(
-                    obrada.getEntitet().getStomatolog().getId())) {
+     private void postaviStomatologa() {
+         ComboBoxModel<Stomatolog> m = cmbStomatolog.getModel();
+         for (int i = 0; i < m.getSize(); i++) {
+            if (m.getElementAt(i).getId().equals(
+                obrada.getEntitet().getStomatolog().getId())) {
                 cmbStomatolog.setSelectedIndex(i);
                 break;
             }
