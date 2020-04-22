@@ -6,12 +6,14 @@
 package hr.mesinger.dentord.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Zvonimir
  */
 @Entity
+@Table(name = "stomatolog")
 public class Stomatolog extends Entitet{
     
     private String ime;
@@ -67,6 +69,11 @@ public class Stomatolog extends Entitet{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return this.ime + " " + this.prezime;
     }
     
     

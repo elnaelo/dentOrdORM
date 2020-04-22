@@ -7,12 +7,14 @@ package hr.mesinger.dentord.model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Zvonimir
  */
 @Entity
+@Table(name = "medicinskasestra")
 public class MedicinskaSestra extends Entitet{
     
     private String ime;
@@ -80,6 +82,12 @@ public class MedicinskaSestra extends Entitet{
     public void setStomatolog(Stomatolog stomatolog) {
         this.stomatolog = stomatolog;
     }
+
+    @Override
+    public String toString() {
+        return this.ime + " " + this.prezime;
+    }
+    
             
             
     

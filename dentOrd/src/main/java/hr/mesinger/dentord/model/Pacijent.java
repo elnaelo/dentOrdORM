@@ -5,14 +5,17 @@
  */
 package hr.mesinger.dentord.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Zvonimir
  */
 @Entity
+@Table(name = "pacijent")   
 public class Pacijent extends Entitet{
     
     private String ime;
@@ -31,14 +34,14 @@ public class Pacijent extends Entitet{
     }
 
     public String getPrezime() {
-        return prezime;
+        return prezime  ;
     }
 
     public void setPrezime(String prezime) {
         this.prezime = prezime;
     }
 
-    public Date getDatumRodenja() {
+     public Date getDatumRodenja() {
         return datumRodenja;
     }
 
@@ -46,12 +49,16 @@ public class Pacijent extends Entitet{
         this.datumRodenja = datumRodenja;
     }
 
+   
     public String getBrojTelefona() {
         return brojTelefona;
     }
 
     public void setBrojTelefona(String brojTelefona) {
         this.brojTelefona = brojTelefona;
+    }   
+
+    public Pacijent() {
     }
 
     public String getBrojZdravstvene() {
@@ -68,6 +75,11 @@ public class Pacijent extends Entitet{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return this.ime + " " + this.prezime;
     }
     
     

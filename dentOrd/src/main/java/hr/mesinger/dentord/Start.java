@@ -5,7 +5,8 @@
  */
 package hr.mesinger.dentord;
 
-import hr.mesinger.dentord.util.HibernateUtil;
+import hr.mesinger.dentord.util.Pomocno;
+import hr.mesinger.dentord.view.SplashScreen;
 
 /**
  *
@@ -14,11 +15,14 @@ import hr.mesinger.dentord.util.HibernateUtil;
 public class Start {
     
     public Start(){
-        HibernateUtil.getSessionFactory().openSession();
+        
+        //Pomocno.PocetniInsert();
+        new SplashScreen().setVisible(true);
         
     }
     
     public static void main(String[] args) {
         new Start();
     }
+    
 }

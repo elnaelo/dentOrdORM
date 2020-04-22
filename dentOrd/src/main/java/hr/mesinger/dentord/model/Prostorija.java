@@ -7,12 +7,14 @@ package hr.mesinger.dentord.model;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Zvonimir
  */
 @Entity
+@Table(name = "prostorija")
 public class Prostorija extends Entitet{
     
     private String naziv;
@@ -59,6 +61,12 @@ public class Prostorija extends Entitet{
 
     public void setVisina(BigDecimal visina) {
         this.visina = visina;
+    }
+    
+  
+    @Override
+    public String toString() {
+        return this.naziv + " - " + this.adresa;
     }
     
     
